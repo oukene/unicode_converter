@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>test</title>
+
+    <meta charset="UTF-8">
+
+</head>
+
+<script>
+    function replaceAll(strTemp, strValue1, strValue2) {
+
+        while (1) {
+            alert("!!")
+            if (strTemp.indexOf(strValue1) != -1) {
+                strTemp = strTemp.replace(strValue1, strValue2);
+                alert("convert")
+            } else {
+                alert("end")
+                break;
+            }
+
+
+        }
+
+        return strTemp;
+
+    }
+
+    function escapeMessage(str) {
+        $('b').each(function() {
+            $(this).text(str.replace("^[가-힣]+$", escapeThis));
+        });
+    }
+
+    function escapeThis(str) {
+        return escape(str).replace(/\%/g, "\\");
+    }
+
+    function unicodeToKor() {
+
+        //유니코드 -> 한글
+
+        var str = document.getElementById("a").value;
+        for (const i in str) {
+
+            document.getElementById("b").value += console.log(str[i]);
+        }
+
+        document.getElementById("b").value = escapeMessage(str);
+
+    }
+
+
+
+    function korToUnicode() {
+
+        //한글 -> 유니코드
+        const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+        var str = document.getElementById("aa").value;
+        var result = ""
+        for (const i in str) {
+            if (korean.test(str[i])) {
+                result += escape(str[i]);
+                result = result.replace("%", "\\");
+            } else {
+                result += str[i];
+            }
+
+        }
+        document.getElementById("bb").value = result
+        //document.getElementById("bb").value = escape(replaceAll(str, "\\", "%"));
+
+
+
+    }
+</script>
+
+<body>
+    <textarea id="aa" rows=25 cols=200></textarea><br><a href="javascript:korToUnicode()">변환(한글 -> 유니코드)</a><br> <textarea id="bb" rows=25 cols=200></textarea>
+
+</body>
+
+</html>
